@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice - Carry The One</title>
+    
+    <!-- IMPORTANT: Use Tailwind CDN for styling and jQuery for interactivity -->
+    <!-- DO NOT use raw JavaScript or raw CSS unless absolutely necessary -->
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- MathJax CDN -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    
+    <!-- Custom styles for background pattern -->
+    <style>
+        /* Minimal custom CSS - only for background pattern */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200%;
+            z-index: -1;
+            overflow: hidden;
+            opacity: 0.5;
+        }
+        .emoji-1 {
+            position: absolute;
+            user-select: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+    
+    <!-- Background Pattern: "1" emoji repeated -->
+    <div class="bg-pattern" id="backgroundPattern"></div>
+    
+    <!-- Back Button -->
+    <a href="index.html" class="fixed top-4 left-4 z-50 w-16 h-16 bg-white hover:bg-gray-100 text-black border border-black rounded-full flex items-center justify-center shadow-lg transition-colors duration-200">
+        <i class="fas fa-arrow-left text-3xl"></i>
+    </a>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-20">
+        <div class="max-w-4xl mx-auto">
+            
+            <!-- Stats Card -->
+            <div class="bg-white border-2 border-black rounded-lg p-6 mb-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div>
+                        <div class="text-2xl font-bold text-green-600" id="correctCount">0</div>
+                        <div class="text-sm text-gray-600">Correct</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-red-600" id="incorrectCount">0</div>
+                        <div class="text-sm text-gray-600">Incorrect</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-blue-600" id="accuracy">0%</div>
+                        <div class="text-sm text-gray-600">Accuracy</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-purple-600" id="streak">0</div>
+                        <div class="text-sm text-gray-600">Streak</div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mt-4 text-center border-t-2 border-black pt-4">
+                    <div>
+                        <div class="text-xl font-bold text-gray-800" id="avgTime">0.0s</div>
+                        <div class="text-sm text-gray-600">Avg Time</div>
+                    </div>
+                    <div>
+                        <div class="text-xl font-bold text-gray-800" id="currentTime">0.0s</div>
+                        <div class="text-sm text-gray-600">Current Time</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question Card -->
+            <div id="questionCard" class="bg-white border-2 border-black rounded-lg p-8 mb-6 hidden">
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-800">Solve:</h2>
+                    <div class="text-4xl font-bold text-gray-800" id="questionDisplay"></div>
+                </div>
+                
+                <div class="flex flex-col items-center gap-4">
+                    <input type="text" id="answerInput" placeholder="Enter your answer" class="w-full md:w-1/2 px-4 py-3 border-2 border-black rounded-lg text-center text-2xl focus:ring-2 focus:ring-gray-500 focus:border-gray-500">
+                    <button id="submitAnswer" class="bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200">
+                        Submit Answer
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Loading State -->
+            <div id="loadingState" class="text-center py-20">
+                <i class="fas fa-spinner fa-spin text-4xl text-gray-400 mb-4"></i>
+                <p class="text-gray-600">Loading practice...</p>
+            </div>
+            
+            <!-- Error State -->
+            <div id="errorState" class="hidden text-center py-20">
+                <div class="bg-white border-2 border-dotted border-black rounded-lg p-12">
+                    <i class="fas fa-exclamation-triangle text-6xl text-black mb-6"></i>
+                    <p class="text-2xl font-semibold text-black mb-6">Practice not found.</p>
+                    <a href="index.html" class="text-black hover:text-gray-600 underline text-xl font-medium inline-block">Return to Home</a>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+    
+    <!-- jQuery Scripts - All interactivity handled here, NO raw JavaScript -->
+    <script>
+        // IMPORTANT: Use jQuery for all interactivity, avoid raw JavaScript
+        
+        $(document).ready(function() {
+            // Generate background pattern with "1" emojis (same as index.html)
+            var patternContainer = $('#backgroundPattern');
+            var emojiCount = 200;
+            
+            var cols = 15;
+            var rows = Math.ceil(emojiCount / cols);
+            var colSpacing = 100 / cols;
+            var rowSpacing = 200 / rows;
+            
+            for (var i = 0; i < emojiCount; i++) {
+                var emoji = $('<div class="emoji-1">1️⃣</div>');
+                
+                var baseSize = Math.max(1, Math.min(window.innerWidth / 50, 4));
+                var size = baseSize * (0.7 + Math.random() * 0.6);
+                var rotation = (Math.random() * 40) - 20;
+                
+                var col = i % cols;
+                var row = Math.floor(i / cols);
+                var x = (col * colSpacing) + (Math.random() * colSpacing * 0.3);
+                var y = (row * rowSpacing) + (Math.random() * rowSpacing * 0.3);
+                
+                emoji.css({
+                    'font-size': size + 'rem',
+                    'transform': 'rotate(' + rotation + 'deg)',
+                    'left': x + '%',
+                    'top': y + '%'
+                });
+                
+                patternContainer.append(emoji);
+            }
+            
+            // Get trick ID from URL
+            var urlParams = new URLSearchParams(window.location.search);
+            var trickId = urlParams.get('id');
+            
+            if (!trickId) {
+                $('#loadingState').addClass('hidden');
+                $('#errorState').removeClass('hidden');
+                return;
+            }
+            
+            // Stats tracking
+            var stats = {
+                correct: 0,
+                incorrect: 0,
+                streak: 0,
+                times: [],
+                startTime: null
+            };
+            
+            // Load generation function
+            $.getJSON('generationIDs.json')
+                .done(function(generationMap) {
+                    var scriptPath = generationMap[trickId];
+                    
+                    if (!scriptPath) {
+                        $('#loadingState').addClass('hidden');
+                        $('#errorState').removeClass('hidden');
+                        return;
+                    }
+                    
+                    // Load the generation script
+                    $.getScript(scriptPath)
+                        .done(function() {
+                            if (typeof generate === 'undefined') {
+                                $('#loadingState').addClass('hidden');
+                                $('#errorState').removeClass('hidden');
+                                return;
+                            }
+                            
+                            // Hide loading, show question card
+                            $('#loadingState').addClass('hidden');
+                            $('#questionCard').removeClass('hidden');
+                            
+                            // Generate first question
+                            generateNewQuestion();
+                            
+                            // Submit answer handler
+                            $('#submitAnswer').on('click', function() {
+                                checkAnswer();
+                            });
+                            
+                            // Enter key handler
+                            $('#answerInput').on('keypress', function(e) {
+                                if (e.which === 13) {
+                                    checkAnswer();
+                                }
+                            });
+                        })
+                        .fail(function() {
+                            $('#loadingState').addClass('hidden');
+                            $('#errorState').removeClass('hidden');
+                        });
+                })
+                .fail(function() {
+                    $('#loadingState').addClass('hidden');
+                    $('#errorState').removeClass('hidden');
+                });
+            
+            function generateNewQuestion() {
+                var questionData = generate();
+                window.currentQuestion = questionData;
+                window.currentAnswer = questionData.answer;
+                
+                // Display question with MathJax
+                $('#questionDisplay').text('$' + questionData.question + '$');
+                MathJax.typesetPromise([document.getElementById('questionDisplay')]);
+                
+                // Clear input and focus
+                $('#answerInput').val('').focus();
+                
+                // Start timer
+                stats.startTime = Date.now();
+            }
+            
+            function checkAnswer() {
+                var userAnswer = $('#answerInput').val().trim();
+                var correctAnswer = window.currentAnswer;
+                
+                // Calculate time
+                var timeElapsed = (Date.now() - stats.startTime) / 1000;
+                stats.times.push(timeElapsed);
+                
+                // Update current time
+                $('#currentTime').text(timeElapsed.toFixed(1) + 's');
+                
+                // Check if correct
+                if (userAnswer === correctAnswer) {
+                    stats.correct++;
+                    stats.streak++;
+                } else {
+                    stats.incorrect++;
+                    stats.streak = 0;
+                }
+                
+                // Update stats
+                updateStats();
+                
+                // Generate new question after short delay
+                setTimeout(function() {
+                    generateNewQuestion();
+                }, 1000);
+            }
+            
+            function updateStats() {
+                $('#correctCount').text(stats.correct);
+                $('#incorrectCount').text(stats.incorrect);
+                
+                var total = stats.correct + stats.incorrect;
+                var accuracy = total > 0 ? Math.round((stats.correct / total) * 100) : 0;
+                $('#accuracy').text(accuracy + '%');
+                
+                $('#streak').text(stats.streak);
+                
+                if (stats.times.length > 0) {
+                    var sum = stats.times.reduce(function(a, b) { return a + b; }, 0);
+                    var avg = sum / stats.times.length;
+                    $('#avgTime').text(avg.toFixed(1) + 's');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
