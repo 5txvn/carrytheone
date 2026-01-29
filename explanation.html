@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explanation - Carry The One</title>
+    
+    <!-- IMPORTANT: Use Tailwind CDN for styling and jQuery for interactivity -->
+    <!-- DO NOT use raw JavaScript or raw CSS unless absolutely necessary -->
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Marked.js CDN for markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- MathJax CDN -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    
+    <!-- Custom styles for markdown content and background pattern -->
+    <style>
+        /* Minimal custom CSS - only for markdown rendering and background pattern */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200%;
+            z-index: -1;
+            overflow: hidden;
+            opacity: 0.25;
+        }
+        .emoji-1 {
+            position: absolute;
+            user-select: none;
+        }
+        .markdown-content {
+            line-height: 1.6;
+        }
+        .markdown-content h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .markdown-content h2 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        .markdown-content h3 {
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .markdown-content p {
+            margin-bottom: 1rem;
+        }
+        .markdown-content ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+
+        .markdown-content ol {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+        }
+        .markdown-content li {
+            margin-bottom: 0.5rem;
+        }
+        .markdown-content code {
+            background-color: #f3f4f6;
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.25rem;
+            font-family: monospace;
+        }
+        .markdown-content pre {
+            background-color: #f3f4f6;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+        .markdown-content pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+    
+    <!-- Background Pattern: "1" emoji repeated -->
+    <div class="bg-pattern" id="backgroundPattern"></div>
+    
+    <!-- Back Button -->
+    <a href="index.html" class="fixed top-4 left-4 z-50 w-16 h-16 bg-white hover:bg-gray-100 text-black border border-black rounded-full flex items-center justify-center shadow-lg transition-colors duration-200">
+        <i class="fas fa-arrow-left text-3xl"></i>
+    </a>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-20">
+        <div class="max-w-4xl mx-auto">
+            <!-- Loading State -->
+            <div id="loadingState" class="text-center py-20">
+                <i class="fas fa-spinner fa-spin text-4xl text-gray-400 mb-4"></i>
+                <p class="text-gray-600">Loading explanation...</p>
+            </div>
+            
+            <!-- Error State -->
+            <div id="errorState" class="hidden">
+                <div class="bg-white border-2 border-dotted border-black rounded-lg p-12 text-center">
+                    <i class="fas fa-exclamation-triangle text-6xl text-black mb-6"></i>
+                    <p class="text-2xl font-semibold text-black mb-6">Explanation not found.</p>
+                    <a href="index.html" class="text-black hover:text-gray-600 underline text-xl font-medium inline-block">Return to Home</a>
+                </div>
+            </div>
+            
+            <!-- Content Container -->
+            <div id="contentContainer" class="hidden">
+                <div class="bg-white border-2 border-black rounded-lg p-8 markdown-content" id="markdownContent">
+                    <!-- Markdown content will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- jQuery Scripts - All interactivity handled here, NO raw JavaScript -->
+    <script>
+        // IMPORTANT: Use jQuery for all interactivity, avoid raw JavaScript
+        
+        $(document).ready(function() {
+            // Generate background pattern with "1" emojis (same as index.html)
+            var patternContainer = $('#backgroundPattern');
+            var emojiCount = 200; // Reduced number of emojis for better performance
+            
+            // Calculate spacing for better distribution (same as index.html)
+            var cols = 15; // Number of columns
+            var rows = Math.ceil(emojiCount / cols);
+            var colSpacing = 100 / cols;
+            var rowSpacing = 200 / rows;
+            
+            for (var i = 0; i < emojiCount; i++) {
+                var emoji = $('<div class="emoji-1">1️⃣</div>');
+                
+                // Responsive size based on viewport
+                var baseSize = Math.max(1, Math.min(window.innerWidth / 50, 4)); // Responsive between 1rem and 4rem
+                var size = baseSize * (0.7 + Math.random() * 0.6); // Vary between 70% and 130% of base
+                
+                // Rotation between -20 and +20 degrees
+                var rotation = (Math.random() * 40) - 20; // -20 to +20 degrees
+                
+                // Better spacing distribution
+                var col = i % cols;
+                var row = Math.floor(i / cols);
+                var x = (col * colSpacing) + (Math.random() * colSpacing * 0.3); // Add slight randomness
+                var y = (row * rowSpacing) + (Math.random() * rowSpacing * 0.3);
+                
+                emoji.css({
+                    'font-size': size + 'rem',
+                    'transform': 'rotate(' + rotation + 'deg)',
+                    'left': x + '%',
+                    'top': y + '%'
+                });
+                
+                patternContainer.append(emoji);
+            }
+            
+            // Get trick ID from URL parameter
+            var urlParams = new URLSearchParams(window.location.search);
+            var trickId = urlParams.get('id');
+            
+            if (!trickId) {
+                $('#loadingState').addClass('hidden');
+                $('#errorState').removeClass('hidden');
+                return;
+            }
+            
+            // Load explanationIDs.json to get the markdown file path
+            $.getJSON('explanationIDs.json')
+                .done(function(explanationMap) {
+                    var markdownPath = explanationMap[trickId];
+                    
+                    if (!markdownPath) {
+                        $('#loadingState').addClass('hidden');
+                        $('#errorState').removeClass('hidden');
+                        return;
+                    }
+                    
+                    // Load the markdown file
+                    $.get(markdownPath, 'text')
+                        .done(function(markdownText) {
+                            // Render markdown to HTML
+                            var htmlContent = marked.parse(markdownText);
+                            
+                            // Insert into page
+                            $('#markdownContent').html(htmlContent);
+                            
+                            // Hide loading, show content
+                            $('#loadingState').addClass('hidden');
+                            $('#contentContainer').removeClass('hidden');
+                            
+                            // Render MathJax after content is loaded
+                            MathJax.typesetPromise().then(function() {
+                                // MathJax rendering complete
+                            }).catch(function(err) {
+                                console.error('MathJax rendering error:', err);
+                            });
+                        })
+                        .fail(function() {
+                            $('#loadingState').addClass('hidden');
+                            $('#errorState').removeClass('hidden');
+                        });
+                })
+                .fail(function() {
+                    $('#loadingState').addClass('hidden');
+                    $('#errorState').removeClass('hidden');
+                });
+        });
+    </script>
+</body>
+</html>
+
