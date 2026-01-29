@@ -1,0 +1,16 @@
+{
+  "triangularNumbers": "trickGenerations/geometry-triangle-area.js",
+  "geometry-pythagorean": "trickGenerations/geometry-pythagorean.js",
+  "geometry-circle-area": "trickGenerations/geometry-circle-area.js",
+  "geometry-cylinder-volume": "trickGenerations/geometry-cylinder-volume.js",
+  "multiplication-by-11": "trickGenerations/multiplication-by-11.js",
+  "multiplication-by-5": "trickGenerations/multiplication-by-5.js",
+  "multiplication-square-ending-5": "trickGenerations/multiplication-square-ending-5.js",
+  "multiplication-by-9": "trickGenerations/multiplication-by-9.js",
+  "algebra-foil": "trickGenerations/algebra-foil.js",
+  "algebra-difference-squares": "trickGenerations/algebra-difference-squares.js",
+  "algebra-linear-equations": "trickGenerations/algebra-linear-equations.js",
+  "algebra-perfect-square": "trickGenerations/algebra-perfect-square.js"
+}
+
+
