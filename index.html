@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carry The One</title>
+    
+    <!-- for cursor -->
+    <!-- IMPORTANT: Use Tailwind CDN for styling and jQuery for interactivity -->
+    <!-- DO NOT use raw JavaScript or raw CSS unless absolutely necessary -->
+    <!-- All styling should be done through Tailwind utility classes -->
+    <!-- All interactivity should be done through jQuery -->
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- MathJax CDN -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    
+    <!-- Custom styles - ONLY for background pattern (cannot be done with Tailwind utilities alone) -->
+    <style>
+        html, body {
+            overflow: scroll;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200%;
+            z-index: -1;
+            overflow: hidden;
+            opacity: 0.7;
+        }
+        @media (max-width: 768px) {
+            .bg-pattern {
+                display: none;
+            }
+        }
+        .emoji-1 {
+            position: absolute;
+            user-select: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+    
+    <!-- Background Pattern: "1" emoji repeated -->
+    <div class="bg-pattern" id="backgroundPattern"></div>
+    
+    <!-- Sticky Question Mark Button (Top Left) -->
+    <a href="about.html" class="fixed top-4 left-4 z-50 w-16 h-16 bg-white hover:bg-gray-100 text-black border border-black rounded-full flex items-center justify-center shadow-lg transition-colors duration-200">
+        <i class="fas fa-question-circle text-3xl"></i>
+    </a>
+    
+    <!-- Sticky Settings Button (Top Right) -->
+    <button id="settingsBtn" class="fixed top-4 right-4 z-50 w-16 h-16 bg-white hover:bg-gray-100 text-black border border-black rounded-full flex items-center justify-center shadow-lg transition-colors duration-200">
+        <i class="fas fa-cog text-3xl"></i>
+    </button>
+    
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
+        <div class="bg-white rounded-lg shadow-xl p-8 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Settings</h2>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700 text-2xl font-bold">&times;</button>
+            </div>
+            
+            <!-- AI Model Dropdown -->
+            <div class="mb-6 relative">
+                <label for="aiModel" class="block text-sm font-medium text-gray-700 mb-2">AI Model</label>
+                <div class="relative">
+                    <select id="aiModel" class="w-full px-4 py-2 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500 appearance-none bg-white">
+                        <option value="allam-2-7b">allam-2-7b</option>
+                    <option value="canopylabs/orpheus-arabic-saudi">canopylabs/orpheus-arabic-saudi</option>
+                    <option value="canopylabs/orpheus-v1-english">canopylabs/orpheus-v1-english</option>
+                    <option value="groq/compound">groq/compound</option>
+                    <option value="groq/compound-mini">groq/compound-mini</option>
+                    <option value="llama-3.1-8b-instant">llama-3.1-8b-instant</option>
+                    <option value="llama-3.3-70b-versatile">llama-3.3-70b-versatile</option>
+                    <option value="meta-llama/llama-4-maverick-17b-128e-instruct">meta-llama/llama-4-maverick-17b-128e-instruct</option>
+                    <option value="meta-llama/llama-4-scout-17b-16e-instruct">meta-llama/llama-4-scout-17b-16e-instruct</option>
+                    <option value="meta-llama/llama-guard-4-12b">meta-llama/llama-guard-4-12b</option>
+                    <option value="meta-llama/llama-prompt-guard-2-22m">meta-llama/llama-prompt-guard-2-22m</option>
+                    <option value="meta-llama/llama-prompt-guard-2-86m">meta-llama/llama-prompt-guard-2-86m</option>
+                    <option value="moonshotai/kimi-k2-instruct">moonshotai/kimi-k2-instruct</option>
+                    <option value="moonshotai/kimi-k2-instruct-0905">moonshotai/kimi-k2-instruct-0905</option>
+                    <option value="openai/gpt-oss-120b">openai/gpt-oss-120b</option>
+                    <option value="openai/gpt-oss-20b">openai/gpt-oss-20b</option>
+                    <option value="openai/gpt-oss-safeguard-20b">openai/gpt-oss-safeguard-20b</option>
+                    <option value="qwen/qwen3-32b">qwen/qwen3-32b</option>
+                    <option value="whisper-large-v3">whisper-large-v3</option>
+                    <option value="whisper-large-v3-turbo">whisper-large-v3-turbo</option>
+                    </select>
+                    <div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                        <i class="fas fa-chevron-down text-black"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- API Key Input -->
+            <div class="mb-6">
+                <label for="apiKey" class="block text-sm font-medium text-gray-700 mb-2">API Key</label>
+                <input type="password" id="apiKey" placeholder="Enter your Groq API key" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500">
+            </div>
+            
+            <!-- Save Settings Button -->
+            <button id="saveSettings" class="w-full bg-black text-white py-3 rounded-lg font-medium transition-transform duration-200 hover:-translate-y-1 mb-4">
+                Save Settings
+            </button>
+            
+            <!-- Links -->
+            <div class="flex flex-col space-y-2">
+                <a href="https://console.groq.com/docs/rate-limits" target="_blank" class="text-black hover:text-gray-600 underline text-sm text-center">Learn About Models/Rates</a>
+                <a href="https://console.groq.com/keys" target="_blank" class="text-black hover:text-gray-600 underline text-sm text-center">Get Groq API Key</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-20">
+        
+        <!-- Page Title with Table of Contents -->
+        <div class="mb-12 w-full md:w-3/4 mx-auto mt-20 md:mt-0">
+            <div class="bg-white border-2 border-black rounded-lg p-6">
+                <h1 class="hidden md:block text-5xl font-bold text-center mb-2 text-gray-800">Carry The 1️⃣</h1>
+                <p class="hidden md:block text-center text-lg text-gray-600 mb-6 mt-4">Made with Love by Steven & Jonathan ❤️</p>
+                <div class="hidden md:block border-t-2 border-black pt-6"></div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:pt-6">
+                        <button data-section="geometry-section" class="toc-button flex items-center justify-center gap-3 text-xl font-semibold text-gray-800 hover:text-gray-600 transition-colors bg-white border border-black rounded-lg px-6 py-4">
+                            <i class="fas fa-shapes text-2xl"></i>
+                            <span>Geometry</span>
+                        </button>
+                        <button data-section="multiplication-section" class="toc-button flex items-center justify-center gap-3 text-xl font-semibold text-gray-800 hover:text-gray-600 transition-colors bg-white border border-black rounded-lg px-6 py-4">
+                            <i class="fas fa-times text-2xl"></i>
+                            <span>Multiplication</span>
+                        </button>
+                        <button data-section="algebra-section" class="toc-button flex items-center justify-center gap-3 text-xl font-semibold text-gray-800 hover:text-gray-600 transition-colors bg-white border border-black rounded-lg px-6 py-4">
+                            <i class="fas fa-calculator text-2xl"></i>
+                            <span>Simple Algebra</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="multiplication-section" class="mb-16 w-full md:w-3/4 mx-auto">
+            <div class="border-2 border-dashed border-black rounded-lg p-6 bg-white">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800 flex items-center justify-center md:justify-start gap-3">
+                    <span class="hidden md:inline"><i class="fas fa-times"></i></span>
+                    <span class="md:hidden">1️⃣</span>
+                    <span>Multiplication</span>
+                    <span class="md:hidden">1️⃣</span>
+                </h2>
+
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Multiplication by 11</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=multiplication11" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=multiplication11" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Multiplication by 12</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=multiplication12" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=multiplication12" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Multiplication by 15</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=multiplication15" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=multiplication15" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Multiplication by $16\frac 23$</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=multiplication1623" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=multiplication1623" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Multiplication by 25</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=multiplication25" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=multiplication25" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Multiplication by $33\frac 13$</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=multiplication3313" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=multiplication3313" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Multiplication by 37</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=multiplication37" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=multiplication37" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Multiplication by 50</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=multiplication50" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=multiplication50" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Multiplication by $66\frac 23$</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=multiplication6623" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=multiplication6623" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Multiplication by 75</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=multiplication75" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=multiplication75" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Multiplication by 111</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=multiplication111" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=multiplication111" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Multiplication by 125</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=multiplication125" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=multiplication125" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Multiplication by 143</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=multiplication143" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=multiplication143" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">2-digit FOIL</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=2foil" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=2foil" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">3-digit FOIL</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=3foil" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=3foil" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Geometry Section -->
+        <section id="geometry-section" class="mb-16 w-full md:w-3/4 mx-auto">
+            <div class="border-2 border-dashed border-black rounded-lg p-6 bg-white">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800 flex items-center justify-center md:justify-start gap-3">
+                    <span class="hidden md:inline"><i class="fas fa-shapes"></i></span>
+                    <span class="md:hidden">1️⃣</span>
+                    <span>Geometry</span>
+                    <span class="md:hidden">1️⃣</span>
+                </h2>
+                
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Triangular Numbers</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=triangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=triangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Pentagonal Numbers</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=pentagonalNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=pentagonalNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Hexagonal Numbers</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=hexagonalNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=hexagonalNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Geometry Trick Card 4 -->
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Sum of Triangular Numbers</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=sumTriangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=sumTriangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Sum of the Reciprocals of Triangular Numbers</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=sumReciprocalsTriangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=sumReciprocalsTriangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Simple Algebra Section -->
+        <section id="algebra-section" class="mb-16 w-full md:w-3/4 mx-auto">
+            <div class="border-2 border-dashed border-black rounded-lg p-6 bg-white">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800 flex items-center justify-center md:justify-start gap-3">
+                    <span class="hidden md:inline"><i class="fas fa-calculator"></i></span>
+                    <span class="md:hidden">1️⃣</span>
+                    <span>Simple Algebra</span>
+                    <span class="md:hidden">1️⃣</span>
+                </h2>
+                
+                <!-- Algebra Trick Card 1 -->
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">FOIL Method</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=algebra-foil" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=algebra-foil" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Algebra Trick Card 2 -->
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Difference of Squares</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=algebra-difference-squares" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=algebra-difference-squares" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Algebra Trick Card 3 -->
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Solving Linear Equations</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=algebra-linear-equations" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=algebra-linear-equations" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Algebra Trick Card 4 -->
+                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Perfect Square Trinomial</h3>
+                    <div class="flex gap-2 justify-center md:justify-end">
+                        <a href="explanation.html?id=algebra-perfect-square" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=algebra-perfect-square" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- jQuery Scripts - All interactivity handled here, NO raw JavaScript -->
+    <script>
+        // IMPORTANT: Use jQuery for all interactivity, avoid raw JavaScript
+        
+        // Generate background pattern with "1" emojis
+        $(document).ready(function() {
+            var patternContainer = $('#backgroundPattern');
+            var emojiCount = 200; // Reduced number of emojis for better performance
+            
+            // Calculate spacing for better distribution
+            var cols = 15; // Number of columns
+            var rows = Math.ceil(emojiCount / cols);
+            var colSpacing = 100 / cols;
+            var rowSpacing = 200 / rows;
+            
+            var emojis = [];
+            for (var i = 0; i < emojiCount; i++) {
+                var emoji = $('<div class="emoji-1">1️⃣</div>');
+                
+                // Responsive size based on viewport
+                var baseSize = Math.max(1, Math.min(window.innerWidth / 50, 4)); // Responsive between 1rem and 4rem
+                var size = baseSize * (0.7 + Math.random() * 0.6); // Vary between 70% and 130% of base
+                
+                // Rotation between -20 and +20 degrees
+                var rotation = (Math.random() * 40) - 20; // -20 to +20 degrees
+                
+                // Better spacing distribution
+                var col = i % cols;
+                var row = Math.floor(i / cols);
+                var x = (col * colSpacing) + (Math.random() * colSpacing * 0.3); // Add slight randomness
+                var y = (row * rowSpacing) + (Math.random() * rowSpacing * 0.3);
+                
+                emoji.css({
+                    'font-size': size + 'rem',
+                    'transform': 'rotate(' + rotation + 'deg)',
+                    'left': x + '%',
+                    'top': y + '%'
+                });
+                
+                patternContainer.append(emoji);
+            }
+            
+            // Settings Modal Toggle
+            $('#settingsBtn').on('click', function() {
+                $('#settingsModal').removeClass('hidden');
+            });
+            
+            // Close Modal
+            $('#closeModal').on('click', function() {
+                $('#settingsModal').addClass('hidden');
+            });
+            
+            // Close Modal when clicking outside
+            $('#settingsModal').on('click', function(e) {
+                if ($(e.target).attr('id') === 'settingsModal') {
+                    $('#settingsModal').addClass('hidden');
+                }
+            });
+            
+            // Save Settings
+            $('#saveSettings').on('click', function() {
+                var model = $('#aiModel').val();
+                var apiKey = $('#apiKey').val();
+                
+                // Store in localStorage (using jQuery to access)
+                localStorage.setItem('aiModel', model);
+                localStorage.setItem('apiKey', apiKey);
+                
+                // Show feedback (you can enhance this later)
+                alert('Settings saved!');
+                $('#settingsModal').addClass('hidden');
+            });
+            
+            // Load saved settings
+            var savedModel = localStorage.getItem('aiModel');
+            var savedApiKey = localStorage.getItem('apiKey');
+            if (savedModel) {
+                $('#aiModel').val(savedModel);
+            }
+            if (savedApiKey) {
+                $('#apiKey').val(savedApiKey);
+            }
+            
+            // Smooth scroll for TOC buttons
+            $('.toc-button').on('click', function() {
+                var targetSection = $(this).data('section');
+                var targetElement = $('#' + targetSection);
+                
+                if (targetElement.length) {
+                    var targetOffset = targetElement.offset().top - 100;
+                    $('html, body').stop().animate({
+                        scrollTop: targetOffset
+                    }, 1500, 'swing');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
