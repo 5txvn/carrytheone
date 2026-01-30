@@ -1,4 +1,4 @@
-2. # ✖️
+# ✖️
 # Multiplication by 12
 ## Notes
 + Right-to-left trick
@@ -21,6 +21,8 @@ $$386\times 12=$$
 3. Move to the next digit (3), multiply it by 2, and add the previous digit as well as the carry ($3\times 2+8+2=16$). Write 6 down to the left of the 32 and carry the 1 (**632**)
 4. We've reached the first digit, so add the carry ($3+1=4$), and write down the 4 to the left of the 632 (**4632**)
 5. Final Answer: **4632**
+## Video Explanation(s)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZRFzMK48zss?si=bwiDoYFfn44wQicZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <br>*Written by: Steven Livingston*<br>
 *Edited/Proofread by: n/a*

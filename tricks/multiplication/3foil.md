@@ -29,6 +29,8 @@ $$892\times 193=$$
 4. Multiply $8\times 9=72$ and $9\times 1=9$. Add these two ($72+9=81$), and add the carry ($81+11=92$). Write the 2 to the left, and carry the 9 (**2156**).
 5. Multiply the first two digits of the numbers together ($8\times 1=8$), and add the carry ($8+9=17$). Write this number to the left (**172156**).
 6. Final answer: **172156**
+## Video Explanation(s)
+None.
 
 <br>*Written by: Steven Livingston*<br>
 *Edited/Proofread by: n/a*

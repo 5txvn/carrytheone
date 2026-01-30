@@ -24,6 +24,8 @@ $$54\times 25=$$
 1. First, divide 54 by 4 to get $54\div 4=13\mathrm r2$. Write the 13 in the answer blank (**13**).
 2. According to the table, our remainder of 2 corresponds with the digits 50, so write these digits after the 13 (**1350**).
 3. Final answer: **1350**
+## Video Explanation(s)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NLjYUl8Py8k?si=jU7ZMTUdSFhcxrki" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <br>*Written by: Steven Livingston*<br>
 *Edited/Proofread by: n/a*

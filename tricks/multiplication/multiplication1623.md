@@ -16,6 +16,8 @@ $$84\times 16\frac 23=$$
 1. $84\div 6=14$
 2. $14\times 100=1400$
 3. Final Answer: **1400**
+## Video Explanation(s)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GGDbvSgJ-lg?si=1YdjDw6O_-328qym" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <br>*Written by: Steven Livingston*<br>
 *Edited/Proofread by: n/a*

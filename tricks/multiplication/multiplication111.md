@@ -28,6 +28,8 @@ $$4567\times 111=$$
 5. No more groups of 3, so add up the first twot digits ($4+5=9$). Add the carry ($9+1=10$), write down the 0 to the left of the 6937, and carry the 1 (**06937**)
 6. Take the first digit (4), add the carry ($4+1=5$), and write this to the left of the 06937 (**506937**)
 7. Final Answer: **506937**
+## Video Explanation(s)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ALEhj4Lcsu4?si=O5_AOpLGfNuj7wUu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <br>*Written by: Steven Livingston*<br>
 *Edited/Proofread by: n/a*

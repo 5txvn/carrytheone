@@ -19,6 +19,8 @@ $$48\times 66\frac 23=$$
 2. $16\times 2=32$ (**32**)
 3. Add two 0s at the end of 32 (**3200**)
 4. Final Answer: **3200**
+## Video Explanation(s)
+None.
 
 <br>*Written by: Steven Livingston*<br>
 *Edited/Proofread by: n/a*

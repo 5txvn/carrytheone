@@ -28,7 +28,9 @@ $$583\times 11=$$
 2. Move to the next digit (8), and add the previous digit ($8+3=11$). Write down the 1 to the left of the 3, and carry the other 1 (**13**)
 3. Move to the next digit (5), and add the previous digit ($8+5=13$). Also, add the carry ($13+1=14$). Write down 4 to the left of the 13, and carry the 1 (**413**)
 4. There are no digits to the left of 5, so add the carry to the 5 ($5+1=6$) and write down this 6 to the left of the 413 (**6413**)
-5. Finanl answer: **6413**
+5. Final answer: **6413**
+## Video Explanation(s)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SYsArijqeUA?si=NsyuSeJ_49Yeosx3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <br>*Written by: Steven Livingston*<br>
 *Edited/Proofread by: n/a*

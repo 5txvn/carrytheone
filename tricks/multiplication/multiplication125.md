@@ -27,6 +27,8 @@ $$43\times 125=$$
 2. Multiply 10 by 5 ($10\times 5=50$). The "added" value that correlates with a remainder of 3 is 3, so add 3 to 50 ($50+3=53$). Write 53 in the answer blank (**53**).
 3. According to the table, our remainder of 3 corresponds with the digits 75, so write these digits after the 53 (**5375**).
 4. Final answer: **5375**
+## Video Explanation(s)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9n9HZ2gOMtY?si=iUtnyzezSThpwfQr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <br>*Written by: Steven Livingston*<br>
 *Edited/Proofread by: n/a*

@@ -22,6 +22,8 @@ $$54\times 50=$$
 1. First, divide 54 by 2 to get $54\div 2=27\mathrm r0$. Write the 27 in the answer blank (**27**).
 2. According to the table, our remainder of 0 corresponds with the digits 00, so write these digits after the 27 (**2700**).
 3. Final answer: **2700**
+## Video Explanation(s)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7eaUbZqfxGY?si=Lc2xZriUIrtjankA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <br>*Written by: Steven Livingston*<br>
 *Edited/Proofread by: n/a*
