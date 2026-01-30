@@ -12,11 +12,20 @@
   "multiplication111": "tricks/multiplication/multiplication111.md",
   "multiplication125": "tricks/multiplication/multiplication125.md",
   "multiplication143": "tricks/multiplication/multiplication143.md",
+  "2foil": "tricks/multiplication/2foil.md",
+  "3foil": "tricks/multiplication/3foil.md",
   "triangularNumbers": "tricks/geometry/triangularNumbers.md",
   "pentagonalNumbers": "tricks/geometry/pentagonalNumbers.md",
   "hexagonalNumbers": "tricks/geometry/hexagonalNumbers.md",
   "sumTriangularNumbers": "tricks/geometry/sumTriangularNumbers.md",
-  "sumReciprocalsTriangularNumbers": "tricks/geometry/sumReciprocalsTriangularNumbers.md"
+  "sumReciprocalsTriangularNumbers": "tricks/geometry/sumReciprocalsTriangularNumbers.md",
+  "volumeSphere": "tricks/geometry/volumeSphere.md",
+  "surfaceAreaSphere": "tricks/geometry/surfaceAreaSphere.md",
+  "remainder3": "tricks/division/remainder3.md",
+  "remainder4": "tricks/division/remainder4.md",
+  "remainder8": "tricks/division/remainder8.md",
+  "remainder9": "tricks/division/remainder9.md",
+  "remainder11": "tricks/division/remainder11.md"
 }
 
 

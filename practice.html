@@ -40,7 +40,12 @@
             height: 200%;
             z-index: -1;
             overflow: hidden;
-            opacity: 0.5;
+            opacity: 0.7;
+        }
+        @media (max-width: 768px) {
+            .bg-pattern {
+                display: none;
+            }
         }
         .emoji-1 {
             position: absolute;
@@ -59,51 +64,45 @@
     </a>
     
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-20">
-        <div class="max-w-4xl mx-auto">
+    <main class="container mx-auto px-4 py-4 md:py-20 flex items-center justify-center min-h-screen md:min-h-0 md:block">
+        <div class="max-w-4xl mx-auto w-full">
             
-            <!-- Stats Card -->
-            <div class="bg-white border-2 border-black rounded-lg p-6 mb-6">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <!-- Stats and Question Card (merged on mobile) -->
+            <div id="questionCard" class="bg-white border-2 border-dotted border-black rounded-lg p-6 md:p-8 mb-6 hidden flex flex-col min-h-[60vh] md:min-h-0 justify-center">
+                <!-- Stats (top on desktop, top on mobile) -->
+                <div class="grid grid-cols-3 gap-4 text-center mb-6">
                     <div>
-                        <div class="text-2xl font-bold text-green-600" id="correctCount">0</div>
-                        <div class="text-sm text-gray-600">Correct</div>
+                        <div class="text-2xl md:text-3xl font-bold text-green-600 flex items-center justify-center gap-2">
+                            <span>✅</span>
+                            <span id="correctCount">0</span>
+                        </div>
+                        <div class="text-sm text-gray-600 hidden md:block">Correct</div>
                     </div>
                     <div>
-                        <div class="text-2xl font-bold text-red-600" id="incorrectCount">0</div>
-                        <div class="text-sm text-gray-600">Incorrect</div>
+                        <div class="text-2xl md:text-3xl font-bold text-red-600 flex items-center justify-center gap-2">
+                            <span>❌</span>
+                            <span id="incorrectCount">0</span>
+                        </div>
+                        <div class="text-sm text-gray-600 hidden md:block">Incorrect</div>
                     </div>
                     <div>
-                        <div class="text-2xl font-bold text-blue-600" id="accuracy">0%</div>
-                        <div class="text-sm text-gray-600">Accuracy</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-bold text-purple-600" id="streak">0</div>
-                        <div class="text-sm text-gray-600">Streak</div>
+                        <div class="text-2xl md:text-3xl font-bold text-black flex items-center justify-center gap-2">
+                            <span>🕐</span>
+                            <span id="avgTime">0.0s</span>
+                        </div>
+                        <div class="text-sm text-gray-600 hidden md:block">Avg Time</div>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4 mt-4 text-center border-t-2 border-black pt-4">
-                    <div>
-                        <div class="text-xl font-bold text-gray-800" id="avgTime">0.0s</div>
-                        <div class="text-sm text-gray-600">Avg Time</div>
-                    </div>
-                    <div>
-                        <div class="text-xl font-bold text-gray-800" id="currentTime">0.0s</div>
-                        <div class="text-sm text-gray-600">Current Time</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Question Card -->
-            <div id="questionCard" class="bg-white border-2 border-black rounded-lg p-8 mb-6 hidden">
+                
+                <!-- Question -->
                 <div class="text-center mb-6">
-                    <h2 class="text-2xl font-bold mb-4 text-gray-800">Solve:</h2>
                     <div class="text-4xl font-bold text-gray-800" id="questionDisplay"></div>
                 </div>
                 
+                <!-- Answer Input -->
                 <div class="flex flex-col items-center gap-4">
-                    <input type="text" id="answerInput" placeholder="Enter your answer" class="w-full md:w-1/2 px-4 py-3 border-2 border-black rounded-lg text-center text-2xl focus:ring-2 focus:ring-gray-500 focus:border-gray-500">
-                    <button id="submitAnswer" class="bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200">
+                    <input type="text" id="answerInput" placeholder="Enter your answer" class="w-3/4 px-4 py-3 border-2 border-black rounded-lg text-center text-2xl focus:ring-2 focus:ring-gray-500 focus:border-gray-500">
+                    <button id="submitAnswer" class="w-3/4 bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200">
                         Submit Answer
                     </button>
                 </div>
@@ -261,30 +260,24 @@
                 // Check if correct
                 if (userAnswer === correctAnswer) {
                     stats.correct++;
-                    stats.streak++;
+                    // Update stats immediately
+                    updateStats();
+                    // Generate new question immediately (no delay)
+                    generateNewQuestion();
                 } else {
                     stats.incorrect++;
-                    stats.streak = 0;
+                    // Update stats
+                    updateStats();
+                    // Generate new question after short delay for incorrect
+                    setTimeout(function() {
+                        generateNewQuestion();
+                    }, 1000);
                 }
-                
-                // Update stats
-                updateStats();
-                
-                // Generate new question after short delay
-                setTimeout(function() {
-                    generateNewQuestion();
-                }, 1000);
             }
             
             function updateStats() {
                 $('#correctCount').text(stats.correct);
                 $('#incorrectCount').text(stats.incorrect);
-                
-                var total = stats.correct + stats.incorrect;
-                var accuracy = total > 0 ? Math.round((stats.correct / total) * 100) : 0;
-                $('#accuracy').text(accuracy + '%');
-                
-                $('#streak').text(stats.streak);
                 
                 if (stats.times.length > 0) {
                     var sum = stats.times.reduce(function(a, b) { return a + b; }, 0);

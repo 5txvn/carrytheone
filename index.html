@@ -144,31 +144,34 @@
     <main class="container mx-auto px-4 py-20">
         
         <!-- Page Title with Table of Contents -->
-        <div class="mb-12 w-full md:w-3/4 mx-auto mt-20 md:mt-0">
+        <div class="mb-12 w-full md:w-3/4 mx-auto mt-16 md:mt-0">
             <div class="bg-white border-2 border-black rounded-lg p-6">
                 <h1 class="hidden md:block text-5xl font-bold text-center mb-2 text-gray-800">Carry The 1️⃣</h1>
                 <p class="hidden md:block text-center text-lg text-gray-600 mb-6 mt-4">Made with Love by Steven & Jonathan ❤️</p>
                 <div class="hidden md:block border-t-2 border-black pt-6"></div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:pt-6">
-                        <button data-section="geometry-section" class="toc-button flex items-center justify-center gap-3 text-xl font-semibold text-gray-800 hover:text-gray-600 transition-colors bg-white border border-black rounded-lg px-6 py-4">
-                            <i class="fas fa-shapes text-2xl"></i>
-                            <span>Geometry</span>
-                        </button>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:pt-6">
                         <button data-section="multiplication-section" class="toc-button flex items-center justify-center gap-3 text-xl font-semibold text-gray-800 hover:text-gray-600 transition-colors bg-white border border-black rounded-lg px-6 py-4">
                             <i class="fas fa-times text-2xl"></i>
-                            <span>Multiplication</span>
+                            <span class="inline">Multiplication</span>
                         </button>
-                        <button data-section="algebra-section" class="toc-button flex items-center justify-center gap-3 text-xl font-semibold text-gray-800 hover:text-gray-600 transition-colors bg-white border border-black rounded-lg px-6 py-4">
-                            <i class="fas fa-calculator text-2xl"></i>
-                            <span>Simple Algebra</span>
+                        <button data-section="geometry-section" class="toc-button flex items-center justify-center gap-3 text-xl font-semibold text-gray-800 hover:text-gray-600 transition-colors bg-white border border-black rounded-lg px-6 py-4">
+                            <i class="fas fa-shapes text-2xl"></i>
+                            <span class="inline">Geometry</span>
+                        </button>
+                        <button data-section="division-section" class="toc-button flex items-center justify-center gap-3 text-xl font-semibold text-gray-800 hover:text-gray-600 transition-colors bg-white border border-black rounded-lg px-6 py-4">
+                            <i class="fas fa-divide text-2xl"></i>
+                            <span class="inline">Division</span>
+                        </button>
+                        <button data-section="estimations-section" class="toc-button flex items-center justify-center gap-3 text-xl font-semibold text-gray-800 hover:text-gray-600 transition-colors bg-white border border-black rounded-lg px-6 py-4">
+                            <i class="fas fa-chart-line text-2xl"></i>
+                            <span class="inline">Estimations</span>
                         </button>
                     </div>
-                </div>
             </div>
         </div>
 
-        <section id="multiplication-section" class="mb-16 w-full md:w-3/4 mx-auto">
-            <div class="border-2 border-dashed border-black rounded-lg p-6 bg-white">
+        <section id="multiplication-section" class="mb-16 w-full max-w-full md:w-3/4 md:mx-auto">
+            <div class="border-2 border-dashed border-black rounded-lg p-4 md:p-6 bg-white">
                 <h2 class="text-3xl font-bold mb-6 text-gray-800 flex items-center justify-center md:justify-start gap-3">
                     <span class="hidden md:inline"><i class="fas fa-times"></i></span>
                     <span class="md:hidden">1️⃣</span>
@@ -178,7 +181,7 @@
 
                 <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Multiplication by 11</h3>
-                    <div class="flex gap-2 justify-center md:justify-end">
+                    <div class="flex gap-2 justify-end">
                         <a href="explanation.html?id=multiplication11" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
                             <i class="fas fa-book"></i>
                             <span>Learn Trick</span>
@@ -389,8 +392,8 @@
         </section>
         
         <!-- Geometry Section -->
-        <section id="geometry-section" class="mb-16 w-full md:w-3/4 mx-auto">
-            <div class="border-2 border-dashed border-black rounded-lg p-6 bg-white">
+        <section id="geometry-section" class="mb-16 w-full max-w-full md:w-3/4 md:mx-auto">
+            <div class="border-2 border-dashed border-black rounded-lg p-4 md:p-6 bg-white">
                 <h2 class="text-3xl font-bold mb-6 text-gray-800 flex items-center justify-center md:justify-start gap-3">
                     <span class="hidden md:inline"><i class="fas fa-shapes"></i></span>
                     <span class="md:hidden">1️⃣</span>
@@ -398,71 +401,152 @@
                     <span class="md:hidden">1️⃣</span>
                 </h2>
                 
-                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Triangular Numbers</h3>
-                    <div class="flex gap-2 justify-center md:justify-end">
-                        <a href="explanation.html?id=triangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                <div class="border-2 border-black rounded-lg p-2 md:p-4 mb-2 md:mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-6">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-800 text-left">Triangular Numbers</h3>
+                    <div class="flex gap-2 justify-end">
+                        <a href="explanation.html?id=triangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
                             <i class="fas fa-book"></i>
-                            <span>Learn Trick</span>
+                            <span class="hidden md:inline">Learn Trick</span>
                         </a>
-                        <a href="practice.html?id=triangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                        <a href="practice.html?id=triangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
                             <i class="fas fa-dumbbell"></i>
-                            <span>Practice Trick</span>
+                            <span class="hidden md:inline">Practice Trick</span>
                         </a>
                     </div>
                 </div>
                 
-                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Pentagonal Numbers</h3>
-                    <div class="flex gap-2 justify-center md:justify-end">
-                        <a href="explanation.html?id=pentagonalNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                <div class="border-2 border-black rounded-lg p-2 md:p-4 mb-2 md:mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-800 text-left">Pentagonal Numbers</h3>
+                    <div class="flex gap-2 justify-end">
+                        <a href="explanation.html?id=pentagonalNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
                             <i class="fas fa-book"></i>
-                            <span>Learn Trick</span>
+                            <span class="hidden md:inline">Learn Trick</span>
                         </a>
-                        <a href="practice.html?id=pentagonalNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                        <a href="practice.html?id=pentagonalNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
                             <i class="fas fa-dumbbell"></i>
-                            <span>Practice Trick</span>
+                            <span class="hidden md:inline">Practice Trick</span>
                         </a>
                     </div>
                 </div>
                 
-                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Hexagonal Numbers</h3>
-                    <div class="flex gap-2 justify-center md:justify-end">
-                        <a href="explanation.html?id=hexagonalNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                <div class="border-2 border-black rounded-lg p-2 md:p-4 mb-2 md:mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-800 text-left">Hexagonal Numbers</h3>
+                    <div class="flex gap-2 justify-end">
+                        <a href="explanation.html?id=hexagonalNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
                             <i class="fas fa-book"></i>
-                            <span>Learn Trick</span>
+                            <span class="hidden md:inline">Learn Trick</span>
                         </a>
-                        <a href="practice.html?id=hexagonalNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                        <a href="practice.html?id=hexagonalNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
                             <i class="fas fa-dumbbell"></i>
-                            <span>Practice Trick</span>
+                            <span class="hidden md:inline">Practice Trick</span>
                         </a>
                     </div>
                 </div>
                 
-                <!-- Geometry Trick Card 4 -->
-                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Sum of Triangular Numbers</h3>
-                    <div class="flex gap-2 justify-center md:justify-end">
-                        <a href="explanation.html?id=sumTriangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                <div class="border-2 border-black rounded-lg p-2 md:p-4 mb-2 md:mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-800 text-left">Sum of Triangular Numbers</h3>
+                    <div class="flex gap-2 justify-end">
+                        <a href="explanation.html?id=sumTriangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span class="hidden md:inline">Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=sumTriangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span class="hidden md:inline">Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-2 md:p-4 mb-2 md:mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-800 text-left">Sum of the Reciprocals of Triangular Numbers</h3>
+                    <div class="flex gap-2 justify-end">
+                        <a href="explanation.html?id=sumReciprocalsTriangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span class="hidden md:inline">Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=sumReciprocalsTriangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span class="hidden md:inline">Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Division Section -->
+        <section id="division-section" class="mb-16 w-full max-w-full md:w-3/4 md:mx-auto">
+            <div class="border-2 border-dashed border-black rounded-lg p-4 md:p-6 bg-white">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800 flex items-center justify-center md:justify-start gap-3">
+                    <span class="hidden md:inline"><i class="fas fa-divide"></i></span>
+                    <span class="md:hidden">1️⃣</span>
+                    <span>Division</span>
+                    <span class="md:hidden">1️⃣</span>
+                </h2>
+                
+                <div class="border-2 border-black rounded-lg p-2 md:p-4 mb-2 md:mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-800 text-left">Remainder Dividing By 3</h3>
+                    <div class="flex gap-2 justify-end">
+                        <a href="explanation.html?id=remainder3" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
                             <i class="fas fa-book"></i>
                             <span>Learn Trick</span>
                         </a>
-                        <a href="practice.html?id=sumTriangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                        <a href="practice.html?id=remainder3" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
                             <i class="fas fa-dumbbell"></i>
                             <span>Practice Trick</span>
                         </a>
                     </div>
                 </div>
 
-                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Sum of the Reciprocals of Triangular Numbers</h3>
-                    <div class="flex gap-2 justify-center md:justify-end">
-                        <a href="explanation.html?id=sumReciprocalsTriangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                <div class="border-2 border-black rounded-lg p-2 md:p-4 mb-2 md:mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-800 text-left">Remainder Dividing By 4</h3>
+                    <div class="flex gap-2 justify-end">
+                        <a href="explanation.html?id=remainder4" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
                             <i class="fas fa-book"></i>
                             <span>Learn Trick</span>
                         </a>
-                        <a href="practice.html?id=sumReciprocalsTriangularNumbers" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
+                        <a href="practice.html?id=remainder4" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-2 md:p-4 mb-2 md:mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-800 text-left">Remainder Dividing By 8</h3>
+                    <div class="flex gap-2 justify-end">
+                        <a href="explanation.html?id=remainder8" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=remainder8" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-2 md:p-4 mb-2 md:mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-800 text-left">Remainder Dividing By 9</h3>
+                    <div class="flex gap-2 justify-end">
+                        <a href="explanation.html?id=remainder9" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=remainder9" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Practice Trick</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-2 border-black rounded-lg p-2 md:p-4 mb-2 md:mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-800 text-left">Remainder Dividing By 11</h3>
+                    <div class="flex gap-2 justify-end">
+                        <a href="explanation.html?id=remainder11" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
+                            <i class="fas fa-book"></i>
+                            <span>Learn Trick</span>
+                        </a>
+                        <a href="practice.html?id=remainder11" class="bg-white border border-black text-black hover:bg-gray-100 px-2 md:px-4 py-2 rounded-lg flex items-center gap-1 md:gap-2 transition-colors duration-200">
                             <i class="fas fa-dumbbell"></i>
                             <span>Practice Trick</span>
                         </a>
@@ -471,75 +555,17 @@
             </div>
         </section>
         
-        <!-- Simple Algebra Section -->
-        <section id="algebra-section" class="mb-16 w-full md:w-3/4 mx-auto">
-            <div class="border-2 border-dashed border-black rounded-lg p-6 bg-white">
+        <!-- Estimations Section -->
+        <section id="estimations-section" class="mb-16 w-full max-w-full md:w-3/4 md:mx-auto">
+            <div class="border-2 border-dashed border-black rounded-lg p-4 md:p-6 bg-white">
                 <h2 class="text-3xl font-bold mb-6 text-gray-800 flex items-center justify-center md:justify-start gap-3">
-                    <span class="hidden md:inline"><i class="fas fa-calculator"></i></span>
+                    <span class="hidden md:inline"><i class="fas fa-chart-line"></i></span>
                     <span class="md:hidden">1️⃣</span>
-                    <span>Simple Algebra</span>
+                    <span>Estimations</span>
                     <span class="md:hidden">1️⃣</span>
                 </h2>
                 
-                <!-- Algebra Trick Card 1 -->
-                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">FOIL Method</h3>
-                    <div class="flex gap-2 justify-center md:justify-end">
-                        <a href="explanation.html?id=algebra-foil" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
-                            <i class="fas fa-book"></i>
-                            <span>Learn Trick</span>
-                        </a>
-                        <a href="practice.html?id=algebra-foil" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
-                            <i class="fas fa-dumbbell"></i>
-                            <span>Practice Trick</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Algebra Trick Card 2 -->
-                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Difference of Squares</h3>
-                    <div class="flex gap-2 justify-center md:justify-end">
-                        <a href="explanation.html?id=algebra-difference-squares" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
-                            <i class="fas fa-book"></i>
-                            <span>Learn Trick</span>
-                        </a>
-                        <a href="practice.html?id=algebra-difference-squares" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
-                            <i class="fas fa-dumbbell"></i>
-                            <span>Practice Trick</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Algebra Trick Card 3 -->
-                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Solving Linear Equations</h3>
-                    <div class="flex gap-2 justify-center md:justify-end">
-                        <a href="explanation.html?id=algebra-linear-equations" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
-                            <i class="fas fa-book"></i>
-                            <span>Learn Trick</span>
-                        </a>
-                        <a href="practice.html?id=algebra-linear-equations" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
-                            <i class="fas fa-dumbbell"></i>
-                            <span>Practice Trick</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Algebra Trick Card 4 -->
-                <div class="border-2 border-black rounded-lg p-4 mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <h3 class="text-xl font-semibold text-gray-800 text-center md:text-left">Perfect Square Trinomial</h3>
-                    <div class="flex gap-2 justify-center md:justify-end">
-                        <a href="explanation.html?id=algebra-perfect-square" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
-                            <i class="fas fa-book"></i>
-                            <span>Learn Trick</span>
-                        </a>
-                        <a href="practice.html?id=algebra-perfect-square" class="bg-white border border-black text-black hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-200">
-                            <i class="fas fa-dumbbell"></i>
-                            <span>Practice Trick</span>
-                        </a>
-                    </div>
-                </div>
+                <!-- Estimations Trick Cards will be added here -->
             </div>
         </section>
         
