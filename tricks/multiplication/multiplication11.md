@@ -30,5 +30,5 @@ $$583\times 11=$$
 4. 5 doesn't have a neighbor, so add the carry to the 5 ($5+1=6$) and write down this 6 to the left of the 413 (**6413**)
 5. Finanl answer: **6413**
 
-<br>*Written by: n/a*<br>
+<br>*Written by: Steven Livingston*<br>
 *Edited/Proofread by: n/a*

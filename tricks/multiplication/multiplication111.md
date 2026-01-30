@@ -29,5 +29,5 @@ $$4567\times 111=$$
 6. Take the first digit (4), add the carry ($4+1=5$), and write this to the left of the 06937 (**506937**)
 7. Final Answer: **506937**
 
-<br>*Written by: n/a*<br>
+<br>*Written by: Steven Livingston*<br>
 *Edited/Proofread by: n/a*

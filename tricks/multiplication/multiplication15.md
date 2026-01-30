@@ -27,5 +27,5 @@ $$35\times 15$$
 3. Add 15 ($510+15=525$), and write down this as your answer (**525**)
 4. Final answer **525**
 
-<br>*Written by: n/a*<br>
+<br>*Written by: Steven Livingston*<br>
 *Edited/Proofread by: n/a*
