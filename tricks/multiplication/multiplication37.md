@@ -14,3 +14,6 @@ $$27\times 37=$$
 $$84\times 37=$$
 1. $84\div 3=28$
 2. $28\times 111=3108$
+
+<br>*Written by: Steven Livingston*<br>
+*Edited/Proofread by: n/a*

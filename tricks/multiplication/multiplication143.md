@@ -14,3 +14,6 @@ $$28\times 143=$$
 $$98\times 143=$$
 1. $98\div 7=14$
 2. $14\times 1001=14014$
+
+<br>*Written by: Steven Livingston*<br>
+*Edited/Proofread by: n/a*

@@ -16,3 +16,6 @@ $$84\times 33\frac 13=$$
 1. $84\div 3=28$
 2. $28\times 100=2800$
 3. Final answer: **2800**
+
+<br>*Written by: Steven Livingston*<br>
+*Edited/Proofread by: n/a*

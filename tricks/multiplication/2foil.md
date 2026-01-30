@@ -23,3 +23,6 @@ $$63\times 47=$$
 2. Multiply the outer two digits together ($6\times 7=42$) and multiply the inner two digits together ($3\times 4=12$). Add these two ($42+12=54$), and add the carry ($54+2=56$). Write the 6 to the left, carry the 5 (**61**)
 3. Multiply the first two digits together ($6\times 4=24$). Add the carry ($24+5=29$), and write down this final result to the left (**2961**)
 4. Final answer: **2961**
+
+<br>*Written by: Steven Livingston*<br>
+*Edited/Proofread by: n/a*

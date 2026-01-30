@@ -27,3 +27,6 @@ $$43\times 75=$$
 2. Multiply 10 by 3 ($10\times 3=30$). The "added" value that correlates with a remainder of 3 is 2, so add 2 to 30 ($30+2=32$). Write 32 in the answer blank (**32**).
 3. According to the table, our remainder of 3 corresponds with the digits 25, so write these digits after the 32 (**3225**).
 4. Final answer: **3225**
+
+<br>*Written by: Steven Livingston*<br>
+*Edited/Proofread by: n/a*
