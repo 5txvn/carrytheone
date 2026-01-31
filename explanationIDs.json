@@ -34,7 +34,10 @@
   "powersOfPi": "tricks/estimations/powersOfPi.md",
   "powersOfE": "tricks/estimations/powersOfE.md",
   "productSquareRoots": "tricks/estimations/productSquareRoots.md",
-  "multiplyingByFractions": "tricks/estimations/multiplyingByFractions.md"
+  "multiplyingByFractions": "tricks/estimations/multiplyingByFractions.md",
+  "sumOfOdds": "tricks/sequences/sumOfOdds.md",
+  "sumOfEvens": "tricks/sequences/sumOfEvens.md"
 }
+
 
 
