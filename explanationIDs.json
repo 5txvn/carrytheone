@@ -37,7 +37,8 @@
   "multiplyingByFractions": "tricks/estimations/multiplyingByFractions.md",
   "sumOfOdds": "tricks/sequences/sumOfOdds.md",
   "sumOfEvens": "tricks/sequences/sumOfEvens.md",
-  "sumOfGeoemetric": "tricks/sequences/sumOfGeoemetric.md"
+  "sumOfGeoemetric": "tricks/sequences/sumOfGeoemetric.md",
+  "sumOfFibonacci": "tricks/sequences/sumOfFibonacci.md"
 }
 
 
