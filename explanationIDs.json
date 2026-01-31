@@ -26,6 +26,8 @@
   "remainder8": "tricks/division/remainder8.md",
   "remainder9": "tricks/division/remainder9.md",
   "remainder11": "tricks/division/remainder11.md",
+  "base10ToBaseB": "tricks/bases/base10ToBaseB.md",
+  "baseBToBase10": "tricks/bases/baseBToBase10.md",
   "powersOfPi": "tricks/estimations/powersOfPi.md",
   "powersOfE": "tricks/estimations/powersOfE.md",
   "productSquareRoots": "tricks/estimations/productSquareRoots.md",
