@@ -26,6 +26,12 @@
   "remainder8": "tricks/division/remainder8.md",
   "remainder9": "tricks/division/remainder9.md",
   "remainder11": "tricks/division/remainder11.md",
+  "1a1x1b": "tricks/fractions/1a1x1b.md",
+  "1a12a14a": "tricks/fractions/1a12a14a.md",
+  "butterflyMethod": "tricks/fractions/butterflyMethod.md",
+  "comparingFractions": "tricks/fractions/comparingFractions.md",
+  "addingReciprocals": "tricks/fractions/addingReciprocals.md",
+  "subtractingReciprocals": "tricks/fractions/subtractingReciprocals.md",
   "base10ToBaseB": "tricks/bases/base10ToBaseB.md",
   "baseBToBase10": "tricks/bases/baseBToBase10.md",
   "base2ToBase4": "tricks/bases/base2ToBase4.md",
@@ -38,7 +44,8 @@
   "sumOfOdds": "tricks/sequences/sumOfOdds.md",
   "sumOfEvens": "tricks/sequences/sumOfEvens.md",
   "sumOfGeoemetric": "tricks/sequences/sumOfGeoemetric.md",
-  "sumOfFibonacci": "tricks/sequences/sumOfFibonacci.md"
+  "sumOfFibonacci": "tricks/sequences/sumOfFibonacci.md",
+  "sumOfConsecutiveNumbers": "tricks/sequences/sumOfConsecutiveNumbers.md"
 }
 
 
