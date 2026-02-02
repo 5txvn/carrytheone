@@ -47,11 +47,15 @@
   "powersOfE": "tricks/estimations/powersOfE.md",
   "productSquareRoots": "tricks/estimations/productSquareRoots.md",
   "multiplyingByFractions": "tricks/estimations/multiplyingByFractions.md",
+  "radiansToDegrees": "tricks/estimations/radiansToDegrees.md",
   "sumOfOdds": "tricks/sequences/sumOfOdds.md",
   "sumOfEvens": "tricks/sequences/sumOfEvens.md",
   "sumOfGeoemetric": "tricks/sequences/sumOfGeoemetric.md",
   "sumOfFibonacci": "tricks/sequences/sumOfFibonacci.md",
-  "sumOfConsecutiveNumbers": "tricks/sequences/sumOfConsecutiveNumbers.md"
+  "sumOfConsecutiveNumbers": "tricks/sequences/sumOfConsecutiveNumbers.md",
+  "sumOfRoots": "tricks/polynomials/sumOfRoots.md",
+  "productOfRoots": "tricks/polynomials/productOfRoots.md",
+  "remainderTheorem": "tricks/polynomials/remainderTheorem.md"
 }
 
 
