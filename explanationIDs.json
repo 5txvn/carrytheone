@@ -55,7 +55,19 @@
   "sumOfConsecutiveNumbers": "tricks/sequences/sumOfConsecutiveNumbers.md",
   "sumOfRoots": "tricks/polynomials/sumOfRoots.md",
   "productOfRoots": "tricks/polynomials/productOfRoots.md",
-  "remainderTheorem": "tricks/polynomials/remainderTheorem.md"
+  "remainderTheorem": "tricks/polynomials/remainderTheorem.md",
+  "positiveIntegralDivisors": "tricks/arithmetic/positiveIntegralDivisors.md",
+  "positiveIntegralDivisorsSum": "tricks/arithmetic/positiveIntegralDivisorsSum.md",
+  "squaringNumbers5": "tricks/arithmetic/squaringNumbers5.md",
+  "squares140": "tricks/exponents/squares140.md",
+  "cubes120": "tricks/exponents/cubes120.md",
+  "gcfLcm": "tricks/arithmetic/gcfLcm.md",
+  "addToTenOnesDigit": "tricks/arithmetic/addToTenOnesDigit.md",
+  "addToTenTensDigit": "tricks/arithmetic/addToTenTensDigit.md",
+  "multiplyingOverUnder100": "tricks/arithmetic/multiplyingOverUnder100.md",
+  "multiplyingUnder100": "tricks/arithmetic/multiplyingUnder100.md",
+  "multiplyingOver100": "tricks/arithmetic/multiplyingOver100.md",
+  "centerTrick": "tricks/arithmetic/centerTrick.md"
 }
 
 
