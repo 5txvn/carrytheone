@@ -67,7 +67,11 @@
   "multiplyingOverUnder100": "tricks/arithmetic/multiplyingOverUnder100.md",
   "multiplyingUnder100": "tricks/arithmetic/multiplyingUnder100.md",
   "multiplyingOver100": "tricks/arithmetic/multiplyingOver100.md",
-  "centerTrick": "tricks/arithmetic/centerTrick.md"
+  "centerTrick": "tricks/arithmetic/centerTrick.md",
+  "doubleHalf": "tricks/arithmetic/doubleHalf.md",
+  "doubleDouble": "tricks/arithmetic/doubleDouble.md",
+  "123n8": "tricks/arithmetic/123n8.md",
+  "123n9": "tricks/arithmetic/123n9.md"
 }
 
 
